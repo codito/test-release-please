@@ -17,18 +17,22 @@ jobs:
     env:
       APP_BUILD_VERSION: ${{ format('4.0.{0}', github.run_number) }}
     steps:
+      - uses: actions/checkout@v4
       - uses: googleapis/release-please-action@v4
         id: release
         if: github.ref == 'refs/heads/master'
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           release-type: simple
+      - name: Set default build number
+        run: |
+          BUILD_VERSION=$(cat version.txt)-${{ github.run_number }}
+          echo "APP_BUILD_VERSION=${BUILD_VERSION}" >> $GITHUB_ENV
       - name: Update build number
         if: ${{ steps.release.outputs.release_created }}
         run: |
           RELEASE_VERSION=${{ steps.release.outputs.tag_name }}
           echo "APP_BUILD_VERSION=${RELEASE_VERSION#v}" >> $GITHUB_ENV
-      - uses: actions/checkout@v2
       - name: Show build number
         run: |
           echo ${{ env.APP_BUILD_VERSION }}
