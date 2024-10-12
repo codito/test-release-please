@@ -1,0 +1,33 @@
+name: .NET
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+    types: [closed]
+
+# Required by release-please
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      APP_BUILD_VERSION: ${{ format('4.0.{0}', github.run_number) }}
+    steps:
+      - uses: googleapis/release-please-action@v4
+        id: release
+        with:
+          release-type: simple
+      - name: Update build number
+        if: ${{ steps.release.outputs.release_created }}
+        run: |
+          RELEASE_VERSION=${{ steps.release.outputs.tag_name }}
+          echo "APP_BUILD_VERSION=${RELEASE_VERSION#v}.0" >> $GITHUB_ENV
+      - uses: actions/checkout@v2
+      - name: Show build number
+        run: |
+          echo ${{ env.APP_BUILD_VERSION }}
