@@ -5,7 +5,6 @@ on:
     branches: [master]
   pull_request:
     branches: [master]
-    types: [closed]
 
 # Required by release-please
 permissions:
@@ -20,6 +19,7 @@ jobs:
     steps:
       - uses: googleapis/release-please-action@v4
         id: release
+        if: github.ref == 'refs/heads/master'
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           release-type: simple
