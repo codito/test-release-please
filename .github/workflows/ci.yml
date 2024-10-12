@@ -14,8 +14,6 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      APP_BUILD_VERSION: ${{ format('4.0.{0}', github.run_number) }}
     steps:
       - uses: actions/checkout@v4
       - uses: googleapis/release-please-action@v4
@@ -26,7 +24,7 @@ jobs:
           release-type: simple
       - name: Set default build number
         run: |
-          BUILD_VERSION=$(cat version.txt)-${{ github.run_number }}
+          BUILD_VERSION=${{ steps.release.outputs.major }}.${{ steps.release.outputs.minor }}.${{ steps.release.outputs.patch }}-pre.${{ github.run_number }}
           echo "APP_BUILD_VERSION=${BUILD_VERSION}" >> $GITHUB_ENV
       - name: Update build number
         if: ${{ steps.release.outputs.release_created }}
