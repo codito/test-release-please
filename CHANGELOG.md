@@ -1,5 +1,20 @@
 # Changelog
 
+## [1.1.0](https://github.com/codito/test-release-please/compare/v1.0.1...v1.1.0) (2024-10-12)
+
+
+### Features
+
+* create version txt ([7f05d0b](https://github.com/codito/test-release-please/commit/7f05d0bd3952b4ddf358e335e4c9c2f361679aaa))
+* use nextversion to compute the pre-release build ([4c714f8](https://github.com/codito/test-release-please/commit/4c714f8b0106b30fe8bfba8147f862c61ee8d3e5))
+
+
+### Bug Fixes
+
+* attempt to use release-please vars for default build number ([f3982ec](https://github.com/codito/test-release-please/commit/f3982ecdbf1bc68906b5ebb0ceb8330eafb51e56))
+* bash oneliner for next version ([98828cb](https://github.com/codito/test-release-please/commit/98828cb1fa5058121cf811d26e247d42daed6a7a))
+* set default build number using a pre-release format ([4bc836c](https://github.com/codito/test-release-please/commit/4bc836cc08ec474aaaac3034b81a2b26a0213f8f))
+
 ## [1.0.1](https://github.com/codito/test-release-please/compare/v1.0.0...v1.0.1) (2024-10-12)
 
 
