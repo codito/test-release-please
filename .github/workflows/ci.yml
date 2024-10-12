@@ -27,7 +27,7 @@ jobs:
         if: ${{ steps.release.outputs.release_created }}
         run: |
           RELEASE_VERSION=${{ steps.release.outputs.tag_name }}
-          echo "APP_BUILD_VERSION=${RELEASE_VERSION#v}.0" >> $GITHUB_ENV
+          echo "APP_BUILD_VERSION=${RELEASE_VERSION#v}" >> $GITHUB_ENV
       - uses: actions/checkout@v2
       - name: Show build number
         run: |
