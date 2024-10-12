@@ -22,9 +22,13 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           release-type: simple
+      - uses: vemel/nextversion@0.2.0
+        id: next_version
+        with:
+          path: version.txt
       - name: Set default build number
         run: |
-          BUILD_VERSION=${{ steps.release.outputs.major }}.${{ steps.release.outputs.minor }}.${{ steps.release.outputs.patch }}-pre.${{ github.run_number }}
+          BUILD_VERSION=${{ steps.next_version.outputs.result }}-pre.${{ github.run_number }}
           echo "APP_BUILD_VERSION=${BUILD_VERSION}" >> $GITHUB_ENV
       - name: Update build number
         if: ${{ steps.release.outputs.release_created }}
