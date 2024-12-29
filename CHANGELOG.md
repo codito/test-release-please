@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.1](https://github.com/codito/test-release-please/compare/v1.1.0...v1.1.1) (2024-12-29)
+
+
+### Bug Fixes
+
+* refactor into two jobs ([79b912b](https://github.com/codito/test-release-please/commit/79b912b10e9a4569c2426d155b9631f3018375bd))
+
 ## [1.1.0](https://github.com/codito/test-release-please/compare/v1.0.1...v1.1.0) (2024-10-12)
 
 
