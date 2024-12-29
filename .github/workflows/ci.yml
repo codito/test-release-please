@@ -37,6 +37,7 @@ jobs:
           echo ${{ env.APP_BUILD_VERSION }}
     outputs:
       build_version: ${{ env.APP_BUILD_VERSION }}
+      release_created: ${{ steps.release.outputs.release_created }}
   build:
     runs-on: ubuntu-latest
     needs: [version]
@@ -44,3 +45,4 @@ jobs:
       - name: Test build version
         run: |
           echo ${{ needs.version.outputs.build_version }}
+          echo ${{ needs.version.outputs.release_created }}
